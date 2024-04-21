@@ -41,6 +41,29 @@ input:focus{
 }
 
 .filterResult li{
+    display: none;
+}
+
+.filterResult.all li,
+.filterResult.bug li.bug,
+.filterResult.dragon li.dragon,
+.filterResult.electric li.electric,
+.filterResult.fighting li.fighting,
+.filterResult.fire li.fire,
+.filterResult.flying li.flying,
+.filterResult.ghost li.ghost,
+.filterResult.grass li.grass,
+.filterResult.ground li.ground,
+.filterResult.ice li.ice,
+.filterResult.normal li.normal,
+.filterResult.poison li.poison,
+.filterResult.psychic li.psychic,
+.filterResult.rock li.rock,
+.filterResult.water li.water{
+    display: block;
+}
+
+.filterResult li{
     padding: 0.5em;  
     cursor: pointer;
     text-transform: capitalize;
@@ -106,15 +129,39 @@ input:focus{
     flex-wrap: wrap;
 }
 
+#pokemonResult .pokemon {
+    display: none;
+    visibility: hidden;
+}
+
+#pokemonResult.all .pokemon,
+#pokemonResult.bug .pokemon.bug,
+#pokemonResult.dragon .pokemon.dragon,
+#pokemonResult.electric .pokemon.electric,
+#pokemonResult.fighting .pokemon.fighting,
+#pokemonResult.fire .pokemon.fire,
+#pokemonResult.flying .pokemon.flying,
+#pokemonResult.ghost .pokemon.ghost,
+#pokemonResult.grass .pokemon.grass,
+#pokemonResult.ground .pokemon.ground,
+#pokemonResult.ice .pokemon.ice,
+#pokemonResult.normal .pokemon.normal,
+#pokemonResult.poison .pokemon.poison,
+#pokemonResult.psychic .pokemon.psychic,
+#pokemonResult.rock .pokemon.rock,
+#pokemonResult.water .pokemon.water{
+    display: flex;
+    visibility: visible;
+}
+
 #pokemonResult .pokemon{
     padding: 1em;
     background: var(--lightGray);
     border-radius: 5px;
     position: relative;
-    margin: 0 1em 1em 0;
+    margin: 0 1em 1.5em 0;
     width: 185px;
     height: 160px;
-    display: flex;
     flex-direction: column;
     align-content: center;
     align-items: center;
@@ -127,8 +174,8 @@ input:focus{
     transition: 0.3s;
 }
 
-#pokemonResult .pokemon:nth-child(5n){
-    margin: 0 0 1em 0;
+#pokemonResult.all .pokemon:nth-child(5n){
+    margin: 0 0 1.5em 0;
 }
 
 #pokemonResult .pokemon.red{

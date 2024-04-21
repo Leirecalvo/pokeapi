@@ -3,22 +3,28 @@
       <img alt="Vue logo" src="../assets/img/logo.svg">
       <div class="pokeFinder">
         <input type="text" v-model="filter" @input="resetResults">
-        <ul class="filterResult" v-if="filter !== ''">
-          <li v-for="(pokemon, index) in pokemonFilter" :key="index" @click="selectResult(pokemon.name, $event)">{{ pokemon.name }}</li>
+        <ul class="filterResult" v-if="filter !== ''" :class="selectType">
+          <li v-for="(pokemon, index) in pokemonFilter" :key="index" @click="selectResult(pokemon.name, $event)"
+            :class="[
+              pokemon.types[0].type.name.toLowerCase(),
+              pokemon.types[1] !== undefined ? pokemon.types[1].type.name.toLowerCase() : '',
+            ]">
+            {{ pokemon.name }}
+          </li>
         </ul>
       </div>
     </header>
 
     <main>
         <div class="typeFilters">
-          <div class="pokeType active" @click="fetchPokemon(); handleItemClick(null, $event.target)">All</div>
-          <div class="pokeType" v-for="(type, index) in pokeTypes" :key="index" @click="pokemonByType(index, type.name)" :class="{ 'active': activeIndex === index }">
+          <div class="pokeType active" @click="pokemonByType('all'); handleItemClickEvent($event.target)">All</div>
+          <div class="pokeType" v-for="(type, index) in pokeTypes" :key="index" @click="pokemonByType(type.name); handleItemClick(index)" :class="{ 'active': activeIndex === index }">
             <img :src="require(`@/assets/img/types/${type.name.toLowerCase()}.svg`)">
             <p>{{ type.name }}</p>
           </div>
         </div>
 
-        <div id="pokemonResult">
+        <div id="pokemonResult" :class="selectType">
           <div class="pokemon" v-for="(pokemon, index) in pokemonFilter" :key="index" 
             :class="[
               pokemon.types[0].type.name.toLowerCase(),
@@ -87,18 +93,22 @@ export default {
         console.error(error);
       }
     },
-    pokemonByType(index, type) {
+    pokemonByType(type) {
       this.selectType = type;
-      console.log(this.selectType);
-      this.handleItemClick(index, null);
     },
-    handleItemClick(index, clickedElement){
+    removeActive(){
       let activeElement = document.querySelector('.active');
       if (activeElement) {
         activeElement.classList.remove('active');
       }
-      if(index){ this.activeIndex = index; }
-      if(clickedElement){ clickedElement.classList.add('active'); }
+    },
+    handleItemClick(index){
+      this.removeActive();
+      this.activeIndex = index;
+    },
+    handleItemClickEvent(clickedElement){
+      this.removeActive();
+      clickedElement.classList.add('active');
     },
     selectResult(result, event) {
       this.filter = result;

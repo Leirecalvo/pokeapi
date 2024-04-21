@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --darkGray: #484F57;
+    --lightGray: #E8EBEE;
+    --darkGreen: #71F1D0;
+    --lightGreen: #B9F8EB;
+    --pokeRed: #FFB3B3;
+    --pokeYellow: #FFFC92;
+    --pokeGreen: #B5DC73;
+    --pokePink: #F7DFE5;
+    --pokeBrown: #e8b7a3;
+    --pokeBlue: #92EAFF;
+    --pokePurple: #E0CCFF;
+    --pokeGray: #ccdeec; 
+    --black: #181818;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    color: var(--black);
+}
+
+body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--lightGray);
+}
+
+#app{
+    display: flex;
+    flex-direction: column;
+    width: 1024px;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--darkGray);
+    padding: 0.75em;
+}
+
+header img{
+    width: 255px;
+    height: auto;
+}

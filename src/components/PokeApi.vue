@@ -95,6 +95,29 @@ export default {
     },
     pokemonByType(type) {
       this.selectType = type;
+      
+      if(type !== 'all'){
+
+        let marginElements = document.getElementsByClassName('.margin-none');
+        
+        if(marginElements.length > 0){
+          marginElements.forEach(element => {
+            element.classList.remove('margin-none');
+          });
+        }
+
+        let resultPokemon = document.querySelector("#pokemonResult");
+        let typePokemons = resultPokemon.getElementsByClassName(type);
+        let typePokemonsLen = typePokemons.length;
+        
+        if(typePokemonsLen > 4){
+            for (let i = 0; i < typePokemonsLen; i++) {
+              if((i + 1) % 5 == 0){
+                typePokemons[i].classList.add('margin-none');
+              }
+            }
+        }
+      }
     },
     removeActive(){
       let activeElement = document.querySelector('.active');
